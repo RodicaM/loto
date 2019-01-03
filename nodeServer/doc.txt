@@ -1,0 +1,8 @@
+input: un req GET http://127.0.0.1:8000/api/v1/random-numbers
+
+output:
+ContentType : aplication/json
+body:
+{
+	"arrayOfRandomNumbers": [1, 2, 3, 4, 5, 6]
+}
