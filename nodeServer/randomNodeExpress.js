@@ -1,15 +1,24 @@
-// Load HTTP module
-var http = require("http");
+var express = require('express');
+var app = express();
 
-// Create HTTP server and listen on port 8000 for requests
-http.createServer(function(request, response) {
-
-   // Set the response HTTP header with HTTP status and Content type
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write('Number generated: \n');
-  res.end();
+app.get('/api/v1/random-numbers', function (req, res) {
+	
+	res.header('Content-Type', 'application/json');
   
-}).listen(8000);
+  var response={};
+  response.arrayOfRandomNumbers = [];
+  
+  for(var i=0;i<6;i++){		
+	response.arrayOfRandomNumbers[i]= Math.floor((Math.random() * 49) + 1);	
+  }
+  
+  res.send(response);
+  
+})
 
-// Print URL for accessing server
-console.log('Server running at http://127.0.0.1:8000/');
+var server = app.listen(8000, function () {
+   var host = server.address().address
+   var port = server.address().port
+   
+   console.log("Example app listening at http://%s:%s", host, port)
+})
